@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "cpu-scheduling_40fcacf6",
+            "vmArgs": "--module-path lib/libs --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/libs/**/*.jar"
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\javafx.base.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\jdk.jsobject.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\javafx.fxml.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\javafx-swt.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\javafx.media.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\javafx.web.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\jfx.incubator.input.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\javafx.swing.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\javafx.controls.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\jfx.incubator.richtext.jar",
+        // "d:\\cpu-scheduling\\cpu-scheduling\\lib\\libs\\javafx.graphics.jar"
+    ]
+}
