@@ -18,7 +18,7 @@ public class Controller {
                 String selectedAlgorithm = view.getAlgorithmComboBox().getValue();
                 String arrivalTimesString = view.getArrivalTextField().getText().trim();
                 String burstTimesString = view.getBurstTextField().getText().trim();
-                
+
                 int quantum1 = 0;
                 int quantum2 = 0;
 
@@ -37,29 +37,29 @@ public class Controller {
                     String quantum1String = view.getQuantumTextField().getText().trim();
                     String quantum2String = view.getQuantum2TextField().getText().trim();
                     if (quantum1String.isEmpty() || quantum2String.isEmpty()) {
-                        showAlert("Missing Input", "Please enter time quanta for both Queue 1 and Queue 2.");
+                        showAlert("Missing Input", "Please enter time quantum for both Queue 1 and Queue 2.");
                         return;
                     }
                     quantum1 = Integer.parseInt(quantum1String);
                     quantum2 = Integer.parseInt(quantum2String);
                     if (quantum1 <= 0 || quantum2 <= 0) {
-                        showAlert("Invalid Input", "Time quanta must be positive integers.");
+                        showAlert("Invalid Input", "Time quantum must be positive integers.");
                         return;
                     }
                 }
-                
+
                 model.setAlgorithm(selectedAlgorithm);
                 model.setArrivalTimes(parseInput(arrivalTimesString));
                 model.setBurstTimes(parseInput(burstTimesString));
-                
+
                 if (model.getArrivalTimesSize() != model.getBurstTimesSize()) {
                     showAlert("Input Mismatch", "The number of arrival times and burst times must be equal.");
                     return;
                 }
 
                 model.initializeProcesses();
-                model.reset(); 
-                
+                model.reset();
+
                 // Pass both quanta to the model for MLFQ, or just quantum1 for RR.
                 if ("Multilevel Feedback Queue, MLFQ".equals(selectedAlgorithm)) {
                     model.runScheduling(quantum1, quantum2);
@@ -68,8 +68,8 @@ public class Controller {
                 }
 
                 Map<String, Object> results = model.getResults();
-                results.put("ganttChartLog", model.getGanttChartLog()); 
-                
+                results.put("ganttChartLog", model.getGanttChartLog());
+
                 view.displayResults(results);
 
             } catch (NumberFormatException ex) {
@@ -88,7 +88,7 @@ public class Controller {
         }
         return dataMap;
     }
-    
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

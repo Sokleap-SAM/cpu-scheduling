@@ -13,7 +13,7 @@ public class View extends HBox {
     private ComboBox<String> algorithmComboBox;
     private TextField arrivalTextField;
     private TextField burstTextField;
-    private TextField quantumTextField; 
+    private TextField quantumTextField;
     private TextField quantum2TextField;
     private Button solveButton;
     private VBox outputPanel;
@@ -28,14 +28,16 @@ public class View extends HBox {
         VBox inputPanel = new VBox(12);
         inputPanel.setPadding(new Insets(24));
         inputPanel.setPrefWidth(300);
-        inputPanel.setStyle("-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);");
+        inputPanel.setStyle(
+                "-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);");
 
         Label inputTitle = new Label("Input");
         inputTitle.setFont(Font.font("System", FontWeight.BOLD, 28));
 
         Label algorithmLabel = new Label("Algorithm");
         algorithmComboBox = new ComboBox<>();
-        algorithmComboBox.getItems().addAll("First Come First Serve, FCFS", "Shortest Job First, SJF", "Shortest Remaining Time First, SRTF", "Round Robin, RR", "Multilevel Feedback Queue, MLFQ");
+        algorithmComboBox.getItems().addAll("First Come First Serve, FCFS", "Shortest Job First, SJF",
+                "Shortest Remaining Time First, SRTF", "Round Robin, RR", "Multilevel Feedback Queue, MLFQ");
         algorithmComboBox.getSelectionModel().selectFirst();
         algorithmComboBox.setPrefWidth(Double.MAX_VALUE);
 
@@ -43,7 +45,7 @@ public class View extends HBox {
         quantumTextField = new TextField();
         quantumTextField.setPromptText("e.g. 4");
         quantumBox = new VBox(12, quantumLabel, quantumTextField);
-        quantumBox.managedProperty().bind(quantumBox.visibleProperty()); 
+        quantumBox.managedProperty().bind(quantumBox.visibleProperty());
         quantumBox.setVisible(false);
 
         Label quantum2Label = new Label("Time Quantum (Queue 2)");
@@ -56,7 +58,7 @@ public class View extends HBox {
         algorithmComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             boolean isRR = "Round Robin, RR".equals(newVal);
             boolean isMLFQ = "Multilevel Feedback Queue, MLFQ".equals(newVal);
-            
+
             quantumBox.setVisible(isRR || isMLFQ);
             quantum2Box.setVisible(isMLFQ);
         });
@@ -71,17 +73,33 @@ public class View extends HBox {
 
         solveButton = new Button("Solve");
         solveButton.setPrefSize(Double.MAX_VALUE, 50);
-        solveButton.setStyle("-fx-background-color: #1E88E5; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;");
+        solveButton.setStyle(
+                "-fx-background-color: #1E88E5; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;");
 
         inputPanel.getChildren().addAll(
-            inputTitle, new Region() {{ setPrefHeight(12); }},
-            algorithmLabel, algorithmComboBox, new Region() {{ setPrefHeight(12); }},
-            quantumBox,
-            quantum2Box,
-            arrivalLabel, arrivalTextField, new Region() {{ setPrefHeight(12); }},
-            burstLabel, burstTextField, new Region() {{ setPrefHeight(24); }},
-            solveButton
-        );
+                inputTitle, new Region() {
+                    {
+                        setPrefHeight(12);
+                    }
+                },
+                algorithmLabel, algorithmComboBox, new Region() {
+                    {
+                        setPrefHeight(12);
+                    }
+                },
+                quantumBox,
+                quantum2Box,
+                arrivalLabel, arrivalTextField, new Region() {
+                    {
+                        setPrefHeight(12);
+                    }
+                },
+                burstLabel, burstTextField, new Region() {
+                    {
+                        setPrefHeight(24);
+                    }
+                },
+                solveButton);
 
         outputPanel = createInitialOutputPanel();
 
@@ -93,7 +111,8 @@ public class View extends HBox {
     private VBox createInitialOutputPanel() {
         VBox panel = new VBox(24);
         panel.setPadding(new Insets(24));
-        panel.setStyle("-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);");
+        panel.setStyle(
+                "-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);");
 
         Label title = new Label("Output");
         title.setFont(Font.font("System", FontWeight.BOLD, 28));
@@ -120,7 +139,8 @@ public class View extends HBox {
         Label outputTitle = new Label("Output");
         outputTitle.setFont(Font.font("System", FontWeight.BOLD, 28));
         Label algoLabel = new Label((String) results.get("algorithm"));
-        algoLabel.setStyle("-fx-background-color: #F0FFF0; -fx-text-fill: #3CB371; -fx-border-color: #3CB371; -fx-border-width: 1; -fx-border-radius: 4; -fx-padding: 4;");
+        algoLabel.setStyle(
+                "-fx-background-color: #F0FFF0; -fx-text-fill: #3CB371; -fx-border-color: #3CB371; -fx-border-width: 1; -fx-border-radius: 4; -fx-padding: 4;");
         header.getChildren().addAll(outputTitle, algoLabel);
         outputPanel.getChildren().add(header);
 
@@ -210,7 +230,7 @@ private VBox createGanttChart(Map<String, Object> results) {
 
         TableColumn<ProcessData, Integer> waitCol = new TableColumn<>("Waiting Time");
         waitCol.setCellValueFactory(new PropertyValueFactory<>("waitingTime"));
-        
+
         TableColumn<ProcessData, Integer> responseCol = new TableColumn<>("Response Time");
         responseCol.setCellValueFactory(new PropertyValueFactory<>("responseTime"));
 
@@ -224,7 +244,8 @@ private VBox createGanttChart(Map<String, Object> results) {
         Map<Integer, Integer> responseTimes = (Map<Integer, Integer>) results.get("responseTimes");
         List<Integer> processOrder = (List<Integer>) results.get("processOrder");
 
-        if (arrivalTimes == null || burstTimes == null || completionTimes == null || turnAroundTimes == null || waitingTimes == null || responseTimes == null || processOrder == null) {
+        if (arrivalTimes == null || burstTimes == null || completionTimes == null || turnAroundTimes == null
+                || waitingTimes == null || responseTimes == null || processOrder == null) {
             System.err.println("Table data is incomplete.");
             return table;
         }
@@ -235,14 +256,13 @@ private VBox createGanttChart(Map<String, Object> results) {
 
         for (int processIndex : processOrder) {
             ProcessData data = new ProcessData(
-                String.valueOf((char)('A' + processIndex)),
-                arrivalTimes.get(processIndex),
-                burstTimes.get(processIndex),
-                completionTimes.get(processIndex),
-                turnAroundTimes.get(processIndex),
-                waitingTimes.get(processIndex),
-                responseTimes.get(processIndex)
-            );
+                    String.valueOf((char) ('A' + processIndex)),
+                    arrivalTimes.get(processIndex),
+                    burstTimes.get(processIndex),
+                    completionTimes.get(processIndex),
+                    turnAroundTimes.get(processIndex),
+                    waitingTimes.get(processIndex),
+                    responseTimes.get(processIndex));
             table.getItems().add(data);
             totalTAT += data.getTurnaroundTime();
             totalWT += data.getWaitingTime();
@@ -255,19 +275,33 @@ private VBox createGanttChart(Map<String, Object> results) {
             double avgWT = totalWT / numberOfProcesses;
             double avgRT = totalRT / numberOfProcesses;
 
-            table.getItems().add(new ProcessData("Average", 0, 0, 0, (int) Math.round(avgTAT), (int) Math.round(avgWT), (int) Math.round(avgRT)));
+            table.getItems().add(new ProcessData("Average", 0, 0, 0, (int) Math.round(avgTAT), (int) Math.round(avgWT),
+                    (int) Math.round(avgRT)));
         }
 
         return table;
     }
 
-    public ComboBox<String> getAlgorithmComboBox() { return algorithmComboBox; }
-    public TextField getArrivalTextField() { return arrivalTextField; }
-    public TextField getBurstTextField() { return burstTextField; }
-    public Button getSolveButton() { return solveButton; }
+    public ComboBox<String> getAlgorithmComboBox() {
+        return algorithmComboBox;
+    }
+
+    public TextField getArrivalTextField() {
+        return arrivalTextField;
+    }
+
+    public TextField getBurstTextField() {
+        return burstTextField;
+    }
+
+    public Button getSolveButton() {
+        return solveButton;
+    }
+
     public TextField getQuantumTextField() {
         return quantumTextField;
     }
+
     public TextField getQuantum2TextField() {
         return quantum2TextField;
     }
