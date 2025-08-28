@@ -50,18 +50,18 @@ This project is a console-based simulator that models how different CPU scheduli
 
 ## 🗂️ Project Structure
 ```Plaintext
-📁 **CPU-Scheduling-Simulator/**
+📁 CPU-Scheduling-Simulator/
 │
-├── 📁 **.vscode/**  
+├── 📁 .vscode/ 
 │   VS Code workspace settings (optional)
 │
-├── 📁 **bin/**  
+├── 📁 bin/ 
 │   Compiled `.class` files
 │
-├── 📁 **lib/**  
+├── 📁 lib/ 
 │   External libraries (if any)
 │
-├── 📁 **src/**  
+├── 📁 src/ 
 │   Source code files  
 │   ├── App.java — Main entry point  
 │   ├── Controller.java — Handles user input and scheduling logic  
