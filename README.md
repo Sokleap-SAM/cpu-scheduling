@@ -56,7 +56,7 @@ This project is a console-based simulator that models how different CPU scheduli
 │   VS Code workspace settings (optional)
 │
 ├── 📁 bin/ 
-│   Compiled `.class` files
+│   Compiled .class files
 │
 ├── 📁 lib/ 
 │   Libraries
@@ -70,7 +70,7 @@ This project is a console-based simulator that models how different CPU scheduli
 │   └── View.java — JavaFX UI components and layout
 └── README.md  — Setup, usage, and documentation
 ```
-
+---
 ## ⚙️ Implemented Algorithms
 
 | Algorithm | Preemptive | Description                                                       |
@@ -83,9 +83,7 @@ This project is a console-based simulator that models how different CPU scheduli
 
 ---
 
----
-
-##  🛠️  How to setup
+##  🛠️  How to Setup
 
 ### 1. Check `settings.json`
 
