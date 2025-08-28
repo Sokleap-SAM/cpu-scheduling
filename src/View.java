@@ -36,8 +36,8 @@ public class View extends HBox {
 
         Label algorithmLabel = new Label("Algorithm");
         algorithmComboBox = new ComboBox<>();
-        algorithmComboBox.getItems().addAll("First Come First Serve (FCFS)", "Shortest Job First (SJF)",
-                "Shortest Remaining Time First (SRTF)", "Round Robin (RR)", "Multilevel Feedback Queue (MLFQ)");
+        algorithmComboBox.getItems().addAll("First Come First Serve, FCFS", "Shortest Job First, SJF",
+                "Shortest Remaining Time First, SRTF", "Round Robin, RR", "Multilevel Feedback Queue, MLFQ");
         algorithmComboBox.getSelectionModel().selectFirst();
         algorithmComboBox.setPrefWidth(Double.MAX_VALUE);
 
