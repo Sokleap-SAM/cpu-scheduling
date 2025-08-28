@@ -161,7 +161,7 @@ private VBox createGanttChart(Map<String, Object> results) {
     ganttTitle.setPadding(new Insets(0, 0, 10, 0));
 
     HBox chart = new HBox(0);
-    HBox timeline = new HBox(0); // Use 0 spacing for precise control
+    HBox timeline = new HBox(0); 
 
     List<GanttEntry> ganttLog = (List<GanttEntry>) results.get("ganttChartLog");
     
@@ -173,14 +173,11 @@ private VBox createGanttChart(Map<String, Object> results) {
     int lastEndTime = 0;
 
     for (GanttEntry entry : ganttLog) {
-        // Handle idle time before the first process or between processes
         if (entry.startTime > lastEndTime) {
 
             Label idleTimeLabel = new Label(String.valueOf(entry.startTime));
             timeline.getChildren().add(idleTimeLabel);
         }
-
-        // Calculate the width of the process block based on its duration
         double blockWidth = 30;
         
         StackPane processBlock = new StackPane();
