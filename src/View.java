@@ -132,80 +132,62 @@ public class View extends HBox {
     }
 
     @SuppressWarnings("unchecked")
-    private VBox createGanttChart(Map<String, Object> results) {
-        VBox ganttContainer = new VBox(10);
-        ganttContainer.setAlignment(Pos.CENTER_LEFT);
-        
-        Label ganttTitle = new Label("Gantt Chart");
-        ganttTitle.setFont(Font.font("System", FontWeight.BOLD, 18));
-        ganttTitle.setPadding(new Insets(0, 0, 10, 0));
+private VBox createGanttChart(Map<String, Object> results) {
+    VBox ganttContainer = new VBox(10);
+    ganttContainer.setAlignment(Pos.CENTER_LEFT);
+    
+    Label ganttTitle = new Label("Gantt Chart");
+    ganttTitle.setFont(Font.font("System", FontWeight.BOLD, 18));
+    ganttTitle.setPadding(new Insets(0, 0, 10, 0));
 
-        HBox chart = new HBox(0);
-        HBox timeline = new HBox(0);
+    HBox chart = new HBox(0);
+    HBox timeline = new HBox(0); // Use 0 spacing for precise control
 
-        List<GanttEntry> ganttLog = (List<GanttEntry>) results.get("ganttChartLog");
-        
-        if (ganttLog == null || ganttLog.isEmpty()) {
-            System.err.println("Gantt chart log data is incomplete or empty.");
-            return ganttContainer;
-        }
-
-        int firstEventTime = ganttLog.get(0).startTime;
-        if (firstEventTime > 0) {
-            double idleWidth = firstEventTime * 30;
-            
-            StackPane idleBlock = new StackPane();
-            idleBlock.setPrefWidth(idleWidth);
-            idleBlock.setPrefHeight(40);
-            idleBlock.setStyle("-fx-background-color: #f0f0f0; -fx-border-color: black; -fx-border-width: 1;");
-            chart.getChildren().add(idleBlock);
-        }
-
-        Label initialTimeLabel = new Label("0");
-        timeline.getChildren().add(initialTimeLabel);
-        int lastEndTime = firstEventTime;
-
-        for (GanttEntry entry : ganttLog) {
-            if (entry.startTime > lastEndTime) {
-                double idleDuration = entry.startTime - lastEndTime;
-                double idleWidth = idleDuration * 30;
-                
-                StackPane idleBlock = new StackPane();
-                idleBlock.setPrefWidth(idleWidth);
-                idleBlock.setPrefHeight(40);
-                idleBlock.setStyle("-fx-background-color: #f0f0f0; -fx-border-color: black; -fx-border-width: 1;");
-                chart.getChildren().add(idleBlock);
-
-                Label idleTimeLabel = new Label(String.valueOf(entry.startTime));
-                timeline.getChildren().add(idleTimeLabel);
-            }
-
-            double blockWidth = (entry.endTime - entry.startTime) * 30;
-            StackPane processBlock = new StackPane();
-            processBlock.setPrefWidth(blockWidth);
-            processBlock.setPrefHeight(40);
-            processBlock.setStyle("-fx-background-color: #87CEFA; -fx-border-color: black; -fx-border-width: 1;");
-
-            Label processLabel = new Label(String.valueOf((char)('A' + entry.processId)));
-            processLabel.setStyle("-fx-text-fill: black; -fx-font-weight: bold;");
-            processBlock.getChildren().add(processLabel);
-            
-            chart.getChildren().add(processBlock);
-            
-            Region timeSpacer = new Region();
-            HBox.setHgrow(timeSpacer, Priority.ALWAYS);
-            timeSpacer.setPrefWidth(blockWidth);
-            timeline.getChildren().add(timeSpacer);
-            
-            Label timeLabel = new Label(String.valueOf(entry.endTime));
-            timeline.getChildren().add(timeLabel);
-
-            lastEndTime = entry.endTime;
-        }
-
-        ganttContainer.getChildren().addAll(ganttTitle, chart, timeline);
+    List<GanttEntry> ganttLog = (List<GanttEntry>) results.get("ganttChartLog");
+    
+    if (ganttLog == null || ganttLog.isEmpty()) {
+        System.err.println("Gantt chart log data is incomplete or empty.");
         return ganttContainer;
     }
+    
+    int lastEndTime = 0;
+
+    for (GanttEntry entry : ganttLog) {
+        // Handle idle time before the first process or between processes
+        if (entry.startTime > lastEndTime) {
+
+            Label idleTimeLabel = new Label(String.valueOf(entry.startTime));
+            timeline.getChildren().add(idleTimeLabel);
+        }
+
+        // Calculate the width of the process block based on its duration
+        double blockWidth = 30;
+        
+        StackPane processBlock = new StackPane();
+        processBlock.setPrefWidth(blockWidth);
+        processBlock.setPrefHeight(40);
+        processBlock.setStyle("-fx-background-color: #87CEFA; -fx-border-color: black; -fx-border-width: 1;");
+
+        Label processLabel = new Label(String.valueOf((char)('A' + entry.processId)));
+        processLabel.setStyle("-fx-text-fill: black; -fx-font-weight: bold;");
+        processBlock.getChildren().add(processLabel);
+        
+        chart.getChildren().add(processBlock);
+        
+        Region timeSpacer = new Region();
+        timeSpacer.setPrefWidth(blockWidth - 12);
+        timeline.getChildren().add(timeSpacer);
+        
+        Label timeLabel = new Label(String.valueOf(entry.endTime));
+        timeline.getChildren().add(timeLabel);
+
+        lastEndTime = entry.endTime;
+    }
+
+    ganttContainer.getChildren().addAll(ganttTitle, chart, timeline);
+    return ganttContainer;
+}
+
 
     @SuppressWarnings("unchecked")
     private TableView<ProcessData> createTable(Map<String, Object> results) {
