@@ -1,18 +1,73 @@
-## Getting Started
+# 🧠 Project: CPU Scheduling Algorithm Simulator
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## 🌟  Project Goal
 
-## Folder Structure
+To simulate and analyze various CPU scheduling algorithms, helping users understand their behavior and performance in an operating system context.
 
-The workspace contains two folders by default, where:
+---
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## 📘 Introduction
+This project is a console-based simulator that models how different CPU scheduling strategies manage process execution. It allows users to input custom processes and observe how algorithms like FCFS, SJF, SRT, RR, and MLFQ handle scheduling. The simulator visualizes execution using Gantt charts and provides key performance metrics for comparison.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+---
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## 🎯 Objectives
+- Understand the mechanics of CPU scheduling in OS
+- Implement and simulate multiple scheduling algorithms
+- Compare algorithm performance using real-time metrics
+- Provide intuitive visual and tabular outputs for analysis
 
-## Dependency Management
+---
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## ✨ Features
+- ⚙️ Supports five scheduling algorithms:
+  - FCFS (First Come First Serve)
+  - SJF (Shortest Job First - Non-preemptive)
+  - SRT (Shortest Remaining Time - Preemptive)
+  - RR (Round Robin with configurable quantum)
+  - MLFQ (Multilevel Feedback Queue with aging and promotion/demotion)
+- 📊 Gantt chart visualization of scheduling
+- 📈 Performance metrics:
+  - Waiting Time
+  - Turnaround Time
+  - Response Time
+  - Averages for all metrics
+
+---
+
+## 🧰 Technology Stack
+
+- **🖥️ Language**: Java ☕  
+  Used for implementing core scheduling logic and managing process data structures.
+
+- **🎨 UI Framework**: JavaFX  
+  Provides a responsive and interactive graphical user interface for input, control, and output visualization.
+
+- **📊 Visualization**: Gantt Chart in JavaFX  
+  Displays process execution timelines using dynamic Gantt charts rendered directly in the JavaFX UI.
+
+---
+
+## 🗂️ Project Structure
+```Plaintext
+📁 **CPU-Scheduling-Simulator/**
+│
+├── 📁 **.vscode/**  
+│   VS Code workspace settings (optional)
+│
+├── 📁 **bin/**  
+│   Compiled `.class` files
+│
+├── 📁 **lib/**  
+│   External libraries (if any)
+│
+├── 📁 **src/**  
+│   Source code files  
+│   ├── App.java — Main entry point  
+│   ├── Controller.java — Handles user input and scheduling logic  
+│   ├── GanttEntry.java — Represents a unit in the Gantt chart  
+│   ├── Model.java — Core scheduling algorithms and data  
+│   ├── ProcessData.java — Process structure and attributes  
+│   └── View.java — JavaFX UI components and layout
+└── README.md  — Setup, usage, and documentation
+```
