@@ -106,7 +106,7 @@ public class Model {
                 firstCpuAllocationTime.put(process, currentTime);
             }
             ganttChartLog.add(new GanttEntry(process, currentTime, currentTime + burst));
-            
+
             int completion = currentTime + burst;
             completionTime.put(process, completion);
             int tat = completion - arrival;
@@ -127,7 +127,7 @@ public class Model {
         }
         int currentTime = 0;
         int completedCount = 0;
-        
+
         while (completedCount < processIndexList.size()) {
             List<Integer> availableProcesses = new ArrayList<>();
             for (Integer process : processIndexList) {
@@ -149,7 +149,7 @@ public class Model {
             }
 
             ganttChartLog.add(new GanttEntry(nextProcess, currentTime, currentTime + burst));
-            
+
             int completion = currentTime + burst;
             completionTime.put(nextProcess, completion);
             int tat = completion - arrival;
@@ -287,12 +287,13 @@ public class Model {
         }
         return "Round Robin algorithm executed. Gantt chart and table will be shown here.";
     }
-    
-    //----------------------------------------------------------------------------------------------------------------------------------------
-    
+
+    // ----------------------------------------------------------------------------------------------------------------------------------------
+
     /**
      * Implements the Multilevel Feedback Queue (MLFQ) scheduling algorithm.
-     * This is a basic 3-level queue with different time quanta per queue and aging logic.
+     * This is a basic 3-level queue with different time quanta per queue and aging
+     * logic.
      *
      * @return A status message.
      */
@@ -319,7 +320,8 @@ public class Model {
         }
 
         while (completedCount < totalProcesses) {
-            while (processIndex < totalProcesses && arrivalTimes.get(processIndexList.get(processIndex)) <= currentTime) {
+            while (processIndex < totalProcesses
+                    && arrivalTimes.get(processIndexList.get(processIndex)) <= currentTime) {
                 int newProcess = processIndexList.get(processIndex);
                 if (!queue1.contains(newProcess) && !queue2.contains(newProcess) && !queue3.contains(newProcess)) {
                     queue1.add(newProcess);
@@ -332,7 +334,7 @@ public class Model {
                     waitTimesInLowerQueue.put(process, waitTimesInLowerQueue.get(process) + 1);
                     if (waitTimesInLowerQueue.get(process) >= AGING_THRESHOLD) {
                         waitTimesInLowerQueue.put(process, 0);
-                        
+
                         int currentLevel = processQueueLevel.get(process);
                         if (currentLevel == 2) {
                             queue2.remove(process);
@@ -357,7 +359,7 @@ public class Model {
                 timeQuantum = this.quantum2; // Use the dynamic quantum
             } else if (!queue3.isEmpty()) {
                 currentProcess = queue3.poll();
-                timeQuantum = Integer.MAX_VALUE; 
+                timeQuantum = Integer.MAX_VALUE;
             } else {
                 currentTime++;
                 continue;
@@ -372,14 +374,15 @@ public class Model {
             currentTime += executeTime;
             remainingBurstTimes.put(currentProcess, remainingBurstTimes.get(currentProcess) - executeTime);
 
-            while (processIndex < totalProcesses && arrivalTimes.get(processIndexList.get(processIndex)) <= currentTime) {
+            while (processIndex < totalProcesses
+                    && arrivalTimes.get(processIndexList.get(processIndex)) <= currentTime) {
                 int newProcess = processIndexList.get(processIndex);
                 if (!queue1.contains(newProcess) && !queue2.contains(newProcess) && !queue3.contains(newProcess)) {
                     queue1.add(newProcess);
                 }
                 processIndex++;
             }
-            
+
             if (remainingBurstTimes.get(currentProcess) > 0) {
                 if (processQueueLevel.get(currentProcess) == 1) {
                     queue2.add(currentProcess);

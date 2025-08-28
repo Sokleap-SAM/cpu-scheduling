@@ -13,7 +13,8 @@ public class ProcessData {
     private final IntegerProperty waitingTime;
     private final IntegerProperty responseTime; // New property for response time
 
-    public ProcessData(String job, int arrivalTime, int burstTime, int finishTime, int turnaroundTime, int waitingTime, int responseTime) {
+    public ProcessData(String job, int arrivalTime, int burstTime, int finishTime, int turnaroundTime, int waitingTime,
+            int responseTime) {
         // Initialize the properties with the given values
         this.job = new SimpleStringProperty(job);
         this.arrivalTime = new SimpleIntegerProperty(arrivalTime);
@@ -25,33 +26,89 @@ public class ProcessData {
     }
 
     // Public getter methods for the Property objects themselves
-    public StringProperty jobProperty() { return job; }
-    public IntegerProperty arrivalTimeProperty() { return arrivalTime; }
-    public IntegerProperty burstTimeProperty() { return burstTime; }
-    public IntegerProperty finishTimeProperty() { return finishTime; }
-    public IntegerProperty turnaroundTimeProperty() { return turnaroundTime; }
-    public IntegerProperty waitingTimeProperty() { return waitingTime; }
-    public IntegerProperty responseTimeProperty() { return responseTime; } // Getter for the new property
+    public StringProperty jobProperty() {
+        return job;
+    }
 
-    // Provide simple getter/setter methods for convenience, though not required for the TableView
-    public String getJob() { return job.get(); }
-    public void setJob(String value) { job.set(value); }
+    public IntegerProperty arrivalTimeProperty() {
+        return arrivalTime;
+    }
 
-    public int getArrivalTime() { return arrivalTime.get(); }
-    public void setArrivalTime(int value) { arrivalTime.set(value); }
+    public IntegerProperty burstTimeProperty() {
+        return burstTime;
+    }
 
-    public int getBurstTime() { return burstTime.get(); }
-    public void setBurstTime(int value) { burstTime.set(value); }
+    public IntegerProperty finishTimeProperty() {
+        return finishTime;
+    }
 
-    public int getFinishTime() { return finishTime.get(); }
-    public void setFinishTime(int value) { finishTime.set(value); }
+    public IntegerProperty turnaroundTimeProperty() {
+        return turnaroundTime;
+    }
 
-    public int getTurnaroundTime() { return turnaroundTime.get(); }
-    public void setTurnaroundTime(int value) { turnaroundTime.set(value); }
+    public IntegerProperty waitingTimeProperty() {
+        return waitingTime;
+    }
 
-    public int getWaitingTime() { return waitingTime.get(); }
-    public void setWaitingTime(int value) { waitingTime.set(value); }
-    
-    public int getResponseTime() { return responseTime.get(); } // Simple getter for the new property
-    public void setResponseTime(int value) { responseTime.set(value); }
+    public IntegerProperty responseTimeProperty() {
+        return responseTime;
+    } // Getter for the new property
+
+    // Provide simple getter/setter methods for convenience, though not required for
+    // the TableView
+    public String getJob() {
+        return job.get();
+    }
+
+    public void setJob(String value) {
+        job.set(value);
+    }
+
+    public int getArrivalTime() {
+        return arrivalTime.get();
+    }
+
+    public void setArrivalTime(int value) {
+        arrivalTime.set(value);
+    }
+
+    public int getBurstTime() {
+        return burstTime.get();
+    }
+
+    public void setBurstTime(int value) {
+        burstTime.set(value);
+    }
+
+    public int getFinishTime() {
+        return finishTime.get();
+    }
+
+    public void setFinishTime(int value) {
+        finishTime.set(value);
+    }
+
+    public int getTurnaroundTime() {
+        return turnaroundTime.get();
+    }
+
+    public void setTurnaroundTime(int value) {
+        turnaroundTime.set(value);
+    }
+
+    public int getWaitingTime() {
+        return waitingTime.get();
+    }
+
+    public void setWaitingTime(int value) {
+        waitingTime.set(value);
+    }
+
+    public int getResponseTime() {
+        return responseTime.get();
+    } // Simple getter for the new property
+
+    public void setResponseTime(int value) {
+        responseTime.set(value);
+    }
 }
